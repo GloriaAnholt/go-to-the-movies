@@ -1,5 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo');
+
 body {
   margin: 0;
-  padding: 0;
+  padding: 10px;
   font-family: sans-serif;
+}
+
+h1 {
+  font-family: 'Baloo', sans-serif;
+  color: darkslateblue;
+}
+
+.box {
+  padding: 20px;
+  border: 1px solid gray;
+  box-shadow: 1px 2px 2px #aaa;
 }
