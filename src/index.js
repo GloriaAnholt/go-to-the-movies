@@ -6,10 +6,7 @@ const landing = (
   <div>
     <h1>Welcome to the Movie Display Demo</h1>
     <p>This is a simple React App to fetch movies and display the data.</p>
-    <ul id="movielist">
-      <li>Loading movie data...</li>
-
-      </ul>
+    <div id="movielist">Loading movie data...</div>
 
   </div>
 )
@@ -19,24 +16,25 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-function moviesHtml(movies) {
+function MoviesHtml(props) {
 
+  let movies = props.movies;
+  console.log('prop movies', props);
   let html = movies.map((movie, i) => {
-    console.log(movie.Title, movie.Year);
-    return <li key={'movie' + i}>{ movie.Title }, { movie.Year }</li>
+    return <li key={'movie' + i}>{ movie.Title } ({ movie.Year })</li>
   })
 
   console.log('completed html', html);
-  return html;
+  return ( <ol>{ html }</ol> ) ;
 }
 
-fetch('http://www.omdbapi.com/?s=princess%20bride')
+fetch('http://www.omdbapi.com/?s=the%20princess%20bride')
   .then(res => res.json())
-  .then(movies => {
-    console.log('movies are', movies.Search);
-    let movieList = moviesHtml(movies.Search)
+  .then(res => {
+    //let movieList = moviesHtml(res.Search);
+    console.log('movies are', res.Search);
     ReactDOM.render(
-      { movieList },
+      <MoviesHtml movies={res.Search}/>,
       document.getElementById('movielist')
     )
   })
